@@ -2,30 +2,30 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://example.org/zh-cn/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://dengke0712.github.io/zh-cn/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="http://example.org/categories/"
+                        href="https://dengke0712.github.io/categories/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="http://example.org/zh-cn/categories/"
+                    href="https://dengke0712.github.io/zh-cn/categories/"
                     /></url><url>
-            <loc>http://example.org/zh-cn/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://dengke0712.github.io/zh-cn/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="http://example.org/"
+                        href="https://dengke0712.github.io/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="http://example.org/zh-cn/"
+                    href="https://dengke0712.github.io/zh-cn/"
                     /></url><url>
-            <loc>http://example.org/zh-cn/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://dengke0712.github.io/zh-cn/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="http://example.org/tags/"
+                        href="https://dengke0712.github.io/tags/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="http://example.org/zh-cn/tags/"
+                    href="https://dengke0712.github.io/zh-cn/tags/"
                     /></url></urlset>

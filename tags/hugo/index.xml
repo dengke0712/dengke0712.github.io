@@ -1,39 +1,39 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Hugo - Tag - My New Hugo Site</title>
-        <link>http://example.org/tags/hugo/</link>
+        <link>https://dengke0712.github.io/tags/hugo/</link>
         <description>Hugo - Tag - My New Hugo Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>dengke712@sina.com (Deng KK)</managingEditor>
-            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 Nov 2023 23:51:45 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/hugo/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 Nov 2023 23:51:45 &#43;0800</lastBuildDate><atom:link href="https://dengke0712.github.io/tags/hugo/" rel="self" type="application/rss+xml" /><item>
     <title>Notes</title>
-    <link>http://example.org/note/</link>
+    <link>https://dengke0712.github.io/note/</link>
     <pubDate>Sun, 05 Nov 2023 23:51:45 &#43;0800</pubDate>
     <author>Deng KK</author>
-    <guid>http://example.org/note/</guid>
+    <guid>https://dengke0712.github.io/note/</guid>
     <description><![CDATA[笔记]]></description>
 </item>
 <item>
     <title>Gin学习笔记</title>
-    <link>http://example.org/gin/</link>
+    <link>https://dengke0712.github.io/gin/</link>
     <pubDate>Sun, 05 Nov 2023 00:22:07 &#43;0800</pubDate>
     <author>Deng KK</author>
-    <guid>http://example.org/gin/</guid>
+    <guid>https://dengke0712.github.io/gin/</guid>
     <description><![CDATA[Gin]]></description>
 </item>
 <item>
     <title>OOP in GO</title>
-    <link>http://example.org/oop_post/</link>
+    <link>https://dengke0712.github.io/oop_post/</link>
     <pubDate>Mon, 30 Oct 2023 22:53:30 &#43;0800</pubDate>
     <author>Deng KK</author>
-    <guid>http://example.org/oop_post/</guid>
+    <guid>https://dengke0712.github.io/oop_post/</guid>
     <description><![CDATA[OOP]]></description>
 </item>
 <item>
     <title>GORM学习总结</title>
-    <link>http://example.org/first_post/</link>
+    <link>https://dengke0712.github.io/first_post/</link>
     <pubDate>Sun, 22 Oct 2023 18:40:38 &#43;0800</pubDate>
     <author>Deng KK</author>
-    <guid>http://example.org/first_post/</guid>
+    <guid>https://dengke0712.github.io/first_post/</guid>
     <description><![CDATA[ORM Object Relational Mapping(对象关系映射)，其主要作用是在编程中，把面向对象的概念跟数据库中表的概念对应起来。举例来说，定义一个对象，那就对应着一张表，这个对象的实例，就对应着表中的一条记录。
 GORM（Go Object Relational Mapping）用于将Go应用程序中的结构体与关系型数据库之间进行映射，从而简化了数据库操作。它提供了一种便捷的方式来执行常见的数据库操作，如创建、读取、更新和删除（CRUD），以及复杂的查询和关联操作。
 声明模型 1 2 3 4 5 type User struct { ID uint Name string Age int } 使用声明模型创建数据库表
