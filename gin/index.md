@@ -5,7 +5,7 @@
 
 ### 路由
 
-``` 
+```
 import (
 	"github.com/gin-gonic/gin"
 )
@@ -22,14 +22,14 @@ func main() {
 ### 获取参数
 
 1. Query方式
-   
+
 获取URL中？后面所携带的参数，例如/name=admin&pwd=123456
 
-``` 
+```
 r.GET("/", func(c *gin.Context) {
 	name := c.Query("name")
 	pwd := c.Query("pwd")
-	
+
 	c.JSON(http.StatusOK, gin.H{
 		"name": name,
 		"pwd":  pwd,
@@ -38,7 +38,7 @@ r.GET("/", func(c *gin.Context) {
 ```
 2. Form方式
 
-``` 
+```
 r.POST("/", func(c *gin.Context) {
 	username := c.PostForm("username") //对应h5表单中的name字段
 	password := c.PostForm("password")
@@ -53,7 +53,7 @@ r.POST("/", func(c *gin.Context) {
 
 通过URL路径传递，例如/user/admin
 
-``` 
+```
 r.GET("/user/:username", func(c *gin.Context) {
     username := c.Param("username")
     c.JSON(http.StatusOK, gin.H{
@@ -64,9 +64,9 @@ r.GET("/user/:username", func(c *gin.Context) {
 
 4. Body
 
-``` 
+```
     router.POST("/post-data", func(c *gin.Context) {
- 
+
         var inputData struct {
             Name  string `json:"name"`
             Email string `json:"email"`
@@ -88,7 +88,7 @@ r.GET("/user/:username", func(c *gin.Context) {
 
 使用LoadHTMLGlob() 或者 LoadHTMLFiles()来渲染HTML模板
 
-``` 
+```
 func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("./templates/*")
@@ -134,9 +134,4 @@ func Run(router *gin.Engine) {
 
 加密方式: 密码 + 盐(一串随机数) + 用户信息 + Hash (Hash Table自己创建)
 数据库存储用户密码和盐。
-      
-
-      
-
-
 

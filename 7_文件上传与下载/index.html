@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>文件上传与下载 - KK的博客</title><meta name="Description" content="GORM"><meta property="og:title" content="文件上传与下载" />
+<meta property="og:description" content="GORM" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" /><meta property="og:image" content="https://dengke0712.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-18T18:40:38+08:00" />
+<meta property="article:modified_time" content="2024-01-18T18:40:38+08:00" /><meta property="og:site_name" content="KK的博客" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://dengke0712.github.io/logo.png"/>
+
+<meta name="twitter:title" content="文件上传与下载"/>
+<meta name="twitter:description" content="GORM"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" /><link rel="prev" href="https://dengke0712.github.io/6_%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/" /><link rel="next" href="https://dengke0712.github.io/8_%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86%E8%AF%BB%E5%90%8E%E6%84%9F/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "文件上传与下载",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/dengke0712.github.io\/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD\/"
+        },"image": ["https:\/\/dengke0712.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "MinIO, SFTP","wordcount":  1322 ,
+        "url": "https:\/\/dengke0712.github.io\/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD\/","datePublished": "2024-01-18T18:40:38+08:00","dateModified": "2024-01-18T18:40:38+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/dengke0712.github.io\/images\/avatar.png",
+                    "width":  1320 ,
+                    "height":  1320 
+                }},"author": {
+                "@type": "Person",
+                "name": "Deng KK"
+            },"description": "GORM"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="KK的博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="KK的博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">文件上传与下载</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://dengke0712.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Deng KK</a></span>&nbsp;<span class="post-category">included in <a href="/categories/learning/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Learning</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-18">2024-01-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1322 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;<span id="/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" class="leancloud_visitors" data-flag-title="文件上传与下载">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前端上传or后端上传">前端上传OR后端上传</a>
+      <ul>
+        <li><a href="#前端上传">前端上传：</a></li>
+        <li><a href="#安全性解决办法">安全性解决办法</a></li>
+        <li><a href="#后端上传">后端上传：</a></li>
+      </ul>
+    </li>
+    <li><a href="#上传文件到minio">上传文件到MinIO</a>
+      <ul>
+        <li><a href="#minio-gov7包">Minio-go/v7包</a></li>
+        <li><a href="#aws-sdk-go包">aws-sdk-go包</a></li>
+      </ul>
+    </li>
+    <li><a href="#从minio下载文件">从MinIO下载文件</a>
+      <ul>
+        <li><a href="#后端下载">后端下载</a></li>
+        <li><a href="#下载文件时返回presigned-url预签名url">下载文件时返回Presigned URL(预签名URL)</a>
+          <ul>
+            <li><a href="#minio-gov7包-1">minio-go/v7包</a></li>
+            <li><a href="#aws-sdk-go包-1">aws-sdk-go包</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#sftp-vs-ftp">SFTP VS FTP</a></li>
+    <li><a href="#建立sftp连接">建立SFTP连接</a></li>
+    <li><a href="#上传和下载文件">上传和下载文件</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="minio">MINIO</h1>
+<h2 id="前端上传or后端上传">前端上传OR后端上传</h2>
+<h3 id="前端上传">前端上传：</h3>
+<p>优点：</p>
+<ol>
+<li>用户体验： 前端上传能够提供更好的用户体验，用户可以直接在浏览器中选择文件并监控上传进度。</li>
+<li>减轻服务器负担： 文件可以直接从用户浏览器上传到对象存储服务，减轻了后端服务器的负担。</li>
+<li>断点续传： 前端可以更容易地实现断点续传功能，因为文件直接从用户浏览器上传，中间环节的网络中断也不会影响上传。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>安全性： 前端上传需要特别注意安全性，因为用户可以直接操作上传的请求，ak sk暴露。</li>
+<li>限制： 浏览器对文件大小和类型有一些限制，大文件可能会受到浏览器的限制。</li>
+</ol>
+<h3 id="安全性解决办法">安全性解决办法</h3>
+<p>问题：敏感信息（例如 Access Key 和 Secret Key）可能会暴露给用户。</p>
+<p>解决：
+使用临时凭证： 不要在前端直接使用永久的 Access Key 和 Secret Key。相反，可以通过后端生成临时凭证，前端使用这些临时凭证进行文件上传。
+这可以通过使用 AWS 的临时凭证机制（如 STS）或 MinIO 中的 Policy 来实现。
+定期轮换凭证可以减少凭证被滥用的风险。</p>
+<p>服务端生成临时凭证</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">minioClient</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">minio</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">minio</span><span class="p">.</span><span class="nx">Options</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Creds</span><span class="p">:</span>  <span class="nx">credentials</span><span class="p">.</span><span class="nf">NewStaticV4</span><span class="p">(</span><span class="nx">accessKeyID</span><span class="p">,</span> <span class="nx">secretAccessKey</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Secure</span><span class="p">:</span> <span class="nx">useSSL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 设置过期时间为1小时
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">expiry</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 生成临时凭证
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">policy</span> <span class="o">:=</span> <span class="nx">minio</span><span class="p">.</span><span class="nf">NewPostPolicy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">policy</span><span class="p">.</span><span class="nf">SetBucket</span><span class="p">(</span><span class="nx">bucketName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">policy</span><span class="p">.</span><span class="nf">SetKey</span><span class="p">(</span><span class="nx">objectName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">policy</span><span class="p">.</span><span class="nf">SetExpires</span><span class="p">(</span><span class="nx">expiry</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 生成临时凭证的URL
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">url</span><span class="p">,</span> <span class="nx">formData</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">minioClient</span><span class="p">.</span><span class="nf">PresignedPostPolicy</span><span class="p">(</span><span class="nx">policy</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Presigned URL: %s\n&#34;</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Form data: %+v\n&#34;</span><span class="p">,</span> <span class="nx">formData</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="后端上传">后端上传：</h3>
+<p>优点：</p>
+<ol>
+<li>安全性： 后端上传可以更好地控制和验证文件上传，确保数据的安全性。</li>
+<li>文件处理： 后端可以处理大文件的存储、备份、转码等需求。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>用户体验： 用户体验可能较差，因为文件上传的过程可能需要等待，用户无法直接监控上传进度。</li>
+<li>服务器负担： 后端需要处理文件上传的请求，可能对服务器造成一定的负担，特别是在高并发情况下。</li>
+<li>复杂性： 后端上传可能需要更复杂的技术和代码，包括文件合并、断点续传的实现等。</li>
+</ol>
+<h2 id="上传文件到minio">上传文件到MinIO</h2>
+<ul>
+<li>如果主要使用 MinIO，并且希望与 MinIO 的特定功能交互，可以选择 minio-go/v7。它专注于 MinIO 的特性和用法，可以更方便地使用 MinIO 特有的功能和选项，例如分片上传。</li>
+<li>aws-sdk-go 是 Amazon S3 官方 SDK，支持与 Amazon S3 以及其他 AWS 服务的交互。如果应用可能涉及到多个 AWS 服务，或者在一个混合云环境中操作，可能更倾向于使用 aws-sdk-go。</li>
+</ul>
+<h3 id="minio-gov7包">Minio-go/v7包</h3>
+<p>使用 minio-go/v7 包进行 MinIO 的上传,使用 minio.New 初始化 MinIO 客户端，然后使用 PutObject 方法将本地文件上传到指定的 MinIO 存储桶（Bucket）和路径（ObjectName）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;github.com/minio/minio-go/v7&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;github.com/minio/minio-go/v7/pkg/credentials&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">endpoint</span> <span class="o">:=</span> <span class="s">&#34;your-minio-endpoint&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">accessKeyID</span> <span class="o">:=</span> <span class="s">&#34;your-access-key&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">secretAccessKey</span> <span class="o">:=</span> <span class="s">&#34;your-secret-key&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">useSSL</span> <span class="o">:=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">minioClient</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">minio</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">minio</span><span class="p">.</span><span class="nx">Options</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Creds</span><span class="p">:</span>  <span class="nx">credentials</span><span class="p">.</span><span class="nf">NewStaticV4</span><span class="p">(</span><span class="nx">accessKeyID</span><span class="p">,</span> <span class="nx">secretAccessKey</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Secure</span><span class="p">:</span> <span class="nx">useSSL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">bucketName</span> <span class="o">:=</span> <span class="s">&#34;your-bucket-name&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">objectName</span> <span class="o">:=</span> <span class="s">&#34;path/to/destination/file&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">filePath</span> <span class="o">:=</span> <span class="s">&#34;path/to/local/file.txt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">filePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">file</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 使用 PutObject 上传文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">info</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">minioClient</span><span class="p">.</span><span class="nf">PutObject</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">TODO</span><span class="p">(),</span> <span class="nx">bucketName</span><span class="p">,</span> <span class="nx">objectName</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">minio</span><span class="p">.</span><span class="nx">PutObjectOptions</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Successfully uploaded %s of size %d\n&#34;</span><span class="p">,</span> <span class="nx">objectName</span><span class="p">,</span> <span class="nx">info</span><span class="p">.</span><span class="nx">Size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想分片上传，可以用以下方法代替PutObject 上传文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">MultipartUpload</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">uploadID</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">minioClient</span><span class="p">.</span><span class="nf">NewMultipartUpload</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">TODO</span><span class="p">(),</span> <span class="nx">bucketName</span><span class="p">,</span> <span class="nx">objectName</span><span class="p">,</span> <span class="nx">minio</span><span class="p">.</span><span class="nx">PutObjectOptions</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 分片大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">partSize</span> <span class="o">:=</span> <span class="nb">int64</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span> <span class="c1">// 5MB
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 初始化缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">buffer</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">partSize</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 上传分片
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">partNumber</span> <span class="o">:=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">n</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">file</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buffer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">minioClient</span><span class="p">.</span><span class="nf">PutObjectPart</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">TODO</span><span class="p">(),</span> <span class="nx">bucketName</span><span class="p">,</span> <span class="nx">objectName</span><span class="p">,</span> <span class="nx">uploadID</span><span class="p">,</span> <span class="nx">minio</span><span class="p">.</span><span class="nf">PartNumber</span><span class="p">(</span><span class="nx">partNumber</span><span class="p">),</span> <span class="nx">minio</span><span class="p">.</span><span class="nx">PutObjectPartOptions</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">Reader</span><span class="p">:</span>      <span class="nx">file</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">ContentType</span><span class="p">:</span> <span class="s">&#34;application/octet-stream&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">partNumber</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 完成 Multipart Upload
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">minioClient</span><span class="p">.</span><span class="nf">CompleteMultipartUpload</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">TODO</span><span class="p">(),</span> <span class="nx">bucketName</span><span class="p">,</span> <span class="nx">objectName</span><span class="p">,</span> <span class="nx">uploadID</span><span class="p">,</span> <span class="nx">minio</span><span class="p">.</span><span class="nx">CompleteMultipartUploadOptions</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Successfully uploaded %s\n&#34;</span><span class="p">,</span> <span class="nx">objectName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="aws-sdk-go包">aws-sdk-go包</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;github.com/aws/aws-sdk-go/aws&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;github.com/aws/aws-sdk-go/aws/credentials&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;github.com/aws/aws-sdk-go/aws/session&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;github.com/aws/aws-sdk-go/service/s3&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">accessKey</span> <span class="o">:=</span> <span class="s">&#34;your-access-key&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">secretKey</span> <span class="o">:=</span> <span class="s">&#34;your-secret-key&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">region</span> <span class="o">:=</span> <span class="s">&#34;your-region&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">bucketName</span> <span class="o">:=</span> <span class="s">&#34;your-bucket-name&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">filePath</span> <span class="o">:=</span> <span class="s">&#34;path/to/your/file.txt&#34;</span> <span class="c1">// 本地文件路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">objectKey</span> <span class="o">:=</span> <span class="s">&#34;your-s3-object-key&#34;</span>   <span class="c1">// S3 对象键（文件名）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sess</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nf">NewSession</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">aws</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Region</span><span class="p">:</span>      <span class="nx">aws</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">region</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Credentials</span><span class="p">:</span> <span class="nx">credentials</span><span class="p">.</span><span class="nf">NewStaticCredentials</span><span class="p">(</span><span class="nx">accessKey</span><span class="p">,</span> <span class="nx">secretKey</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">svc</span> <span class="o">:=</span> <span class="nx">s3</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">sess</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">filePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">file</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 配置上传参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">params</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">s3</span><span class="p">.</span><span class="nx">PutObjectInput</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Bucket</span><span class="p">:</span> <span class="nx">aws</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">bucketName</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Key</span><span class="p">:</span>    <span class="nx">aws</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">objectKey</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Body</span><span class="p">:</span>   <span class="nx">file</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 执行上传操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">svc</span><span class="p">.</span><span class="nf">PutObject</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Successfully uploaded file to %s/%s\n&#34;</span><span class="p">,</span> <span class="nx">bucketName</span><span class="p">,</span> <span class="nx">objectKey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;ETag: %s\n&#34;</span><span class="p">,</span> <span class="o">*</span><span class="nx">resp</span><span class="p">.</span><span class="nx">ETag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="从minio下载文件">从MinIO下载文件</h2>
+<h3 id="后端下载">后端下载</h3>
+<p>使用 FGetObject 方法从 MinIO 存储桶中下载文件到本地.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;github.com/minio/minio-go/v7&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;github.com/minio/minio-go/v7/pkg/credentials&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">endpoint</span> <span class="o">:=</span> <span class="s">&#34;your-minio-endpoint&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">accessKeyID</span> <span class="o">:=</span> <span class="s">&#34;your-access-key&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">secretAccessKey</span> <span class="o">:=</span> <span class="s">&#34;your-secret-key&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">useSSL</span> <span class="o">:=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">minioClient</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">minio</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">minio</span><span class="p">.</span><span class="nx">Options</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Creds</span><span class="p">:</span>  <span class="nx">credentials</span><span class="p">.</span><span class="nf">NewStaticV4</span><span class="p">(</span><span class="nx">accessKeyID</span><span class="p">,</span> <span class="nx">secretAccessKey</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Secure</span><span class="p">:</span> <span class="nx">useSSL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">bucketName</span> <span class="o">:=</span> <span class="s">&#34;your-bucket-name&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">objectName</span> <span class="o">:=</span> <span class="s">&#34;path/to/source/file&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">filePath</span> <span class="o">:=</span> <span class="s">&#34;path/to/local/destination/file.txt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 使用 GetObject 下载文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">err</span> <span class="p">=</span> <span class="nx">minioClient</span><span class="p">.</span><span class="nf">FGetObject</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">TODO</span><span class="p">(),</span> <span class="nx">bucketName</span><span class="p">,</span> <span class="nx">objectName</span><span class="p">,</span> <span class="nx">filePath</span><span class="p">,</span> <span class="nx">minio</span><span class="p">.</span><span class="nx">GetObjectOptions</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Successfully downloaded %s to %s\n&#34;</span><span class="p">,</span> <span class="nx">objectName</span><span class="p">,</span> <span class="nx">filePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="下载文件时返回presigned-url预签名url">下载文件时返回Presigned URL(预签名URL)</h3>
+<p>让前端直接对接 MinIO 进行文件下载，可以使用 MinIO 提供的临时授权（Presigned URL）的机制。</p>
+<p>Presigned URL 允许你在前端生成一个包含访问权限和有效期限的 URL，通过这个 URL 可以直接下载文件，而不需要将访问密钥（access key）和秘密密钥（secret key）暴露给前端。</p>
+<h4 id="minio-gov7包-1">minio-go/v7包</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/minio/minio-go/v7&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/minio/minio-go/v7/pkg/credentials&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/minio/minio-go/v7/pkg/policy&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">endpoint</span> <span class="o">:=</span> <span class="s">&#34;your-minio-endpoint&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">accessKeyID</span> <span class="o">:=</span> <span class="s">&#34;your-access-key&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">secretAccessKey</span> <span class="o">:=</span> <span class="s">&#34;your-secret-key&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">useSSL</span> <span class="o">:=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">minioClient</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">minio</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">minio</span><span class="p">.</span><span class="nx">Options</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Creds</span><span class="p">:</span>  <span class="nx">credentials</span><span class="p">.</span><span class="nf">NewStaticV4</span><span class="p">(</span><span class="nx">accessKeyID</span><span class="p">,</span> <span class="nx">secretAccessKey</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Secure</span><span class="p">:</span> <span class="nx">useSSL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">bucketName</span> <span class="o">:=</span> <span class="s">&#34;your-bucket-name&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">objectName</span> <span class="o">:=</span> <span class="s">&#34;path/to/uploaded/file&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">expiry</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 生成临时凭证
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">policy</span> <span class="o">:=</span> <span class="nx">minio</span><span class="p">.</span><span class="nf">NewPostPolicy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">policy</span><span class="p">.</span><span class="nf">SetBucket</span><span class="p">(</span><span class="nx">bucketName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">policy</span><span class="p">.</span><span class="nf">SetKey</span><span class="p">(</span><span class="nx">objectName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">policy</span><span class="p">.</span><span class="nf">SetExpires</span><span class="p">(</span><span class="nx">expiry</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 可以设置特定的上传条件，例如文件大小、文件类型等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">policy</span><span class="p">.</span><span class="nf">SetContentLengthRange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span> <span class="c1">// 限制文件大小为1B到1KB之间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 生成临时凭证的URL
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">url</span><span class="p">,</span> <span class="nx">formData</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">minioClient</span><span class="p">.</span><span class="nf">PresignedPostPolicy</span><span class="p">(</span><span class="nx">policy</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Presigned URL: %s\n&#34;</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Form data: %+v\n&#34;</span><span class="p">,</span> <span class="nx">formData</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果不需要设置特定的上传条件，例如文件大小、文件类型等，可以直接使用PresignedGetObject()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 生成预签名 URL
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">presignedURL</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">minioClient</span><span class="p">.</span><span class="nf">PresignedGetObject</span><span class="p">(</span><span class="s">&#34;your-bucket-name&#34;</span><span class="p">,</span> <span class="s">&#34;path/to/source/file&#34;</span><span class="p">,</span> <span class="nx">expiry</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="aws-sdk-go包-1">aws-sdk-go包</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/aws/aws-sdk-go/aws&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/aws/aws-sdk-go/aws/session&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/aws/aws-sdk-go/service/s3&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sess</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nf">NewSession</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">aws</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Region</span><span class="p">:</span> <span class="nx">aws</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;your-region&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">s3Client</span> <span class="o">:=</span> <span class="nx">s3</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">sess</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">bucket</span> <span class="o">:=</span> <span class="s">&#34;your-s3-bucket&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">objectKey</span> <span class="o">:=</span> <span class="s">&#34;path/to/your/file.txt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">expiration</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 生成预签名 URL
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">req</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">s3Client</span><span class="p">.</span><span class="nf">GetObjectRequest</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">s3</span><span class="p">.</span><span class="nx">GetObjectInput</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Bucket</span><span class="p">:</span> <span class="nx">aws</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">bucket</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Key</span><span class="p">:</span>    <span class="nx">aws</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">objectKey</span><span class="p">),</span> <span class="c1">// 桶里的文件路径+文件名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">url</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">req</span><span class="p">.</span><span class="nf">Presign</span><span class="p">(</span><span class="nx">expiration</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Presigned URL: %s\n&#34;</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="sftp">SFTP</h1>
+<p>SFTP (SSH File Transfer Protocol) 是一种通过安全加密的 SSH 连接进行文件传输的协议。它提供了对文件的安全访问和传输，通过在 SSH 连接上建立一个加密通道，保护了数据的机密性和完整性。</p>
+<p>SFTP 既可以在交互式用户界面中使用，也可以在命令行中使用，使用户能够执行文件传输和文件管理操作，就像使用传统的 FTP 协议一样。然而，与 FTP 不同，SFTP 在传输过程中使用 SSH 协议进行加密，因此更加安全。</p>
+<h2 id="sftp-vs-ftp">SFTP VS FTP</h2>
+<p>SFTP 具有以下优势：</p>
+<ol>
+<li>
+<p>安全性： SFTP 使用 SSH 连接，通过加密通道传输数据，提供更高级别的安全性，防止数据在传输过程中被窃听或篡改。</p>
+</li>
+<li>
+<p>端到端加密： SFTP 提供端到端的加密，包括身份验证和数据传输，确保数据的完整性和机密性。</p>
+</li>
+<li>
+<p>单一连接： SFTP 使用单一的连接进行文件传输和管理，而不像 FTP 那样需要多个连接（控制连接和数据连接）。</p>
+</li>
+<li>
+<p>支持用户身份验证： SFTP 通常通过用户名和密码进行身份验证，也支持其他身份验证方法，如公钥、证书等。</p>
+</li>
+</ol>
+<h2 id="建立sftp连接">建立SFTP连接</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;golang.org/x/crypto/ssh&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;golang.org/x/crypto/ssh/agent&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sftpServer</span> <span class="o">:=</span> <span class="s">&#34;your-sftp-server&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sftpPort</span> <span class="o">:=</span> <span class="mi">22</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 用户名和密码（可以使用其他身份验证方法，如密钥）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">username</span> <span class="o">:=</span> <span class="s">&#34;your-username&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">password</span> <span class="o">:=</span> <span class="s">&#34;your-password&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">sshConfig</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">ssh</span><span class="p">.</span><span class="nx">ClientConfig</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">User</span><span class="p">:</span> <span class="nx">username</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Auth</span><span class="p">:</span> <span class="p">[]</span><span class="nx">ssh</span><span class="p">.</span><span class="nx">AuthMethod</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">ssh</span><span class="p">.</span><span class="nf">Password</span><span class="p">(</span><span class="nx">password</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">HostKeyCallback</span><span class="p">:</span> <span class="nx">ssh</span><span class="p">.</span><span class="nf">InsecureIgnoreHostKey</span><span class="p">(),</span> <span class="c1">// 不验证服务器的 HostKey
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 建立 SSH 连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ssh</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%s:%d&#34;</span><span class="p">,</span> <span class="nx">sftpServer</span><span class="p">,</span> <span class="nx">sftpPort</span><span class="p">),</span> <span class="nx">sshConfig</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Failed to dial: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 建立 SFTP 客户端
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">client</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sftp</span><span class="p">.</span><span class="nf">NewClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Failed to create SFTP client: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为了安全起见，应该使用密钥而不是密码进行身份验证，并且在生产环境中，应该验证服务器的 HostKey。</p>
+<h2 id="上传和下载文件">上传和下载文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 上传文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">uploadFile</span><span class="p">(</span><span class="nx">client</span> <span class="o">*</span><span class="nx">sftp</span><span class="p">.</span><span class="nx">Client</span><span class="p">,</span> <span class="nx">localPath</span><span class="p">,</span> <span class="nx">remotePath</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">localFile</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">localPath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Failed to open local file: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">localFile</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">remoteFile</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="nx">remotePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Failed to create remote file: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">remoteFile</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">localFile</span><span class="p">.</span><span class="nf">WriteTo</span><span class="p">(</span><span class="nx">remoteFile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Failed to upload file: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;File &#39;%s&#39; uploaded to &#39;%s&#39;\n&#34;</span><span class="p">,</span> <span class="nx">localPath</span><span class="p">,</span> <span class="nx">remotePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 下载文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">downloadFile</span><span class="p">(</span><span class="nx">client</span> <span class="o">*</span><span class="nx">sftp</span><span class="p">.</span><span class="nx">Client</span><span class="p">,</span> <span class="nx">remotePath</span><span class="p">,</span> <span class="nx">localPath</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">remoteFile</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">remotePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Failed to open remote file: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">remoteFile</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">localFile</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="nx">localPath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Failed to create local file: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">localFile</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">remoteFile</span><span class="p">.</span><span class="nf">WriteTo</span><span class="p">(</span><span class="nx">localFile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Failed to download file: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;File &#39;%s&#39; downloaded to &#39;%s&#39;\n&#34;</span><span class="p">,</span> <span class="nx">remotePath</span><span class="p">,</span> <span class="nx">localPath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-01-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" data-title="文件上传与下载" data-via="xxxx" data-hashtags="MinIO,SFTP"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" data-hashtag="MinIO"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" data-title="文件上传与下载"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" data-title="文件上传与下载"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" data-title="文件上传与下载"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/minio/">MinIO</a>,&nbsp;<a href="/tags/sftp/">SFTP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/6_%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/" class="prev" rel="prev" title="Go语言学习之压缩文件"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Go语言学习之压缩文件</a>
+            <a href="/8_%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86%E8%AF%BB%E5%90%8E%E6%84%9F/" class="next" rel="next" title="《向上管理：如何正确汇报工作》读后感">《向上管理：如何正确汇报工作》读后感<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://dengke0712.github.io/" target="_blank">Deng KK</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

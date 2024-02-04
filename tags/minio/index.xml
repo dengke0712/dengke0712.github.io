@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MinIO - Tag - KK的博客</title>
+        <link>https://dengke0712.github.io/tags/minio/</link>
+        <description>MinIO - Tag - KK的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>dengke712@sina.com (Deng KK)</managingEditor>
+            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 18 Jan 2024 18:40:38 &#43;0800</lastBuildDate><atom:link href="https://dengke0712.github.io/tags/minio/" rel="self" type="application/rss+xml" /><item>
+    <title>文件上传与下载</title>
+    <link>https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/</link>
+    <pubDate>Thu, 18 Jan 2024 18:40:38 &#43;0800</pubDate>
+    <author>Deng KK</author>
+    <guid>https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/</guid>
+    <description><![CDATA[MINIO 前端上传OR后端上传 前端上传： 优点：
+用户体验： 前端上传能够提供更好的用户体验，用户可以直接在浏览器中选择文件并监控上传进度。 减轻服务器负担： 文件可以直接从用户浏览器上传到对象存储服务，减轻了后端服务器的负担。 断点续传： 前端可以更容易地实现断点续传功能，因为文件直接从用户浏览器上传，中间环节的网络中断也不会影响上传。 缺点：
+安全性： 前端上传需要特别注意安全性，因为用户可以直接操作上传的请求，ak sk暴露。 限制： 浏览器对文件大小和类型有一些限制，大文件可能会受到浏览器的限制。 安全性解决办法 问题：敏感信息（例如 Access Key 和 Secret Key）可能会暴露给用户。
+解决： 使用临时凭证： 不要在前端直接使用永久的 Access Key 和 Secret Key。相反，可以通过后端生成临时凭证，前端使用这些临时凭证进行文件上传。 这可以通过使用 AWS 的临时凭证机制（如 STS）或 MinIO 中的 Policy 来实现。 定期轮换凭证可以减少凭证被滥用的风险。
+服务端生成临时凭证
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 func main(){ minioClient, err := minio.]]></description>
+</item>
+</channel>
+</rss>

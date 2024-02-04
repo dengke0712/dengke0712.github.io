@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Gin学习笔记 - My New Hugo Site</title><meta name="Description" content="Gin"><meta property="og:title" content="Gin学习笔记" />
+        <title>Gin学习笔记 - KK的博客</title><meta name="Description" content="Gin"><meta property="og:title" content="Gin学习笔记" />
 <meta property="og:description" content="Gin" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dengke0712.github.io/gin/" /><meta property="og:image" content="https://dengke0712.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-05T00:22:07+08:00" />
-<meta property="article:modified_time" content="2023-11-05T00:22:07+08:00" /><meta property="og:site_name" content="LoveIt" />
+<meta property="article:modified_time" content="2023-11-05T00:22:07+08:00" /><meta property="og:site_name" content="KK的博客" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://dengke0712.github.io/logo.png"/>
@@ -30,10 +30,15 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/dengke0712.github.io\/gin\/"
-        },"image": ["https:\/\/dengke0712.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Hugo","wordcount":  283 ,
+        },"image": ["https:\/\/dengke0712.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Gin","wordcount":  283 ,
         "url": "https:\/\/dengke0712.github.io\/gin\/","datePublished": "2023-11-05T00:22:07+08:00","dateModified": "2023-11-05T00:22:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/dengke0712.github.io\/images\/avatar.png"},"author": {
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/dengke0712.github.io\/images\/avatar.png",
+                    "width":  1320 ,
+                    "height":  1320 
+                }},"author": {
                 "@type": "Person",
                 "name": "Deng KK"
             },"description": "Gin"
@@ -44,7 +49,7 @@
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="My New Hugo Site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+            <a href="/" title="KK的博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -70,7 +75,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="My New Hugo Site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+                <a href="/" title="KK的博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -109,7 +114,7 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Gin学习笔记</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Deng KK</a></span>&nbsp;<span class="post-category">included in <a href="/categories/learning/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Learning</a></span></div>
+            <div class="post-meta-line"><span class="post-author"><a href="https://dengke0712.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Deng KK</a></span>&nbsp;<span class="post-category">included in <a href="/categories/learning/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Learning</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-05">2023-11-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;283 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/gin/" class="leancloud_visitors" data-flag-title="Gin学习笔记">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
@@ -181,7 +186,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">r.GET(&#34;/&#34;, func(c *gin.Context) {
 </span></span><span class="line"><span class="cl">	name := c.Query(&#34;name&#34;)
 </span></span><span class="line"><span class="cl">	pwd := c.Query(&#34;pwd&#34;)
-</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	c.JSON(http.StatusOK, gin.H{
 </span></span><span class="line"><span class="cl">		&#34;name&#34;: name,
 </span></span><span class="line"><span class="cl">		&#34;pwd&#34;:  pwd,
@@ -261,7 +266,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    router.POST(&#34;/post-data&#34;, func(c *gin.Context) {
-</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        var inputData struct {
 </span></span><span class="line"><span class="cl">            Name  string `json:&#34;name&#34;`
 </span></span><span class="line"><span class="cl">            Email string `json:&#34;email&#34;`
@@ -374,19 +379,19 @@
                             <a class="link-to-markdown" href="/gin/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://dengke0712.github.io/gin/" data-title="Gin学习笔记" data-via="xxxx" data-hashtags="Hugo"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://dengke0712.github.io/gin/" data-hashtag="Hugo"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://dengke0712.github.io/gin/" data-title="Gin学习笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://dengke0712.github.io/gin/" data-title="Gin学习笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://dengke0712.github.io/gin/" data-title="Gin学习笔记"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://dengke0712.github.io/gin/" data-title="Gin学习笔记" data-via="xxxx" data-hashtags="Gin"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://dengke0712.github.io/gin/" data-hashtag="Gin"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://dengke0712.github.io/gin/" data-title="Gin学习笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://dengke0712.github.io/gin/" data-title="Gin学习笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://dengke0712.github.io/gin/" data-title="Gin学习笔记"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hugo/">Hugo</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gin/">Gin</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/oop_post/" class="prev" rel="prev" title="OOP in GO"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>OOP in GO</a>
+    <div class="post-nav"><a href="/oop_post/" class="prev" rel="prev" title="GO中的面向对象编程"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>GO中的面向对象编程</a>
             <a href="/note/" class="next" rel="next" title="Notes">Notes<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
@@ -394,7 +399,7 @@
             </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Deng KK</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://dengke0712.github.io/" target="_blank">Deng KK</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

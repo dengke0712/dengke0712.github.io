@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Zip - Tag - KK的博客</title>
+        <link>https://dengke0712.github.io/tags/zip/</link>
+        <description>Zip - Tag - KK的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>dengke712@sina.com (Deng KK)</managingEditor>
+            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 11 Jan 2024 18:40:38 &#43;0800</lastBuildDate><atom:link href="https://dengke0712.github.io/tags/zip/" rel="self" type="application/rss+xml" /><item>
+    <title>Go语言学习之压缩文件</title>
+    <link>https://dengke0712.github.io/6_%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/</link>
+    <pubDate>Thu, 11 Jan 2024 18:40:38 &#43;0800</pubDate>
+    <author>Deng KK</author>
+    <guid>https://dengke0712.github.io/6_%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/</guid>
+    <description><![CDATA[Go中如何压缩文件 zip zlib gzip 的区别 总的来说，ZIP适用于多文件和目录的归档，ZLIB适用于轻量级的数据压缩，而GZIP适用于单个文件的压缩。
+如果需要跨平台支持并涉及多文件归档，ZIP可能是更好的选择；如果只是需要对单个文件或数据进行压缩，ZLIB或GZIP可能更适合。
+ZIP 设计目标：ZIP是一种通用的压缩和归档格式，旨在提供对多个文件和目录的支持。
+压缩算法：使用DEFLATE算法进行数据压缩。
+使用场景：适用于需要在不同操作系统之间进行文件传输或存档的场景，因为ZIP格式是跨平台支持的。
+ZLIB 设计目标：ZLIB是一个用于数据压缩和解压缩的库，它并不直接提供归档功能，而是专注于提供一种通用的压缩算法。
+压缩算法：使用DEFLATE算法，与ZIP相同。
+使用场景：适用于需要在程序中对单个文件或数据进行轻量级压缩和解压缩的场景，而不涉及归档。
+GZIP 设计目标：GZIP是一种常用的压缩和归档格式，通常用于对单个文件进行压缩。
+压缩算法：也使用DEFLATE算法，但与ZIP格式略有不同的头部和尾部格式。
+使用场景：适用于需要在文件系统中存储或传输单个文件的场景，因为GZIP格式在UNIX/Linux环境中广泛支持
+在Go中如何应用 ZIP（archive/zip） archive/zip包主要用于创建和解析ZIP格式的归档文件。使用archive/zip包的Create函数创建一个zip.Writer，然后添加文件并进行压缩。
+缺点：ZIP格式是通用的归档格式，但相对于一些其他格式，它可能在某些情况下产生较大的文件。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 import ( &#34;archive/zip&#34; &#34;os&#34; ) func main() { outputFile, _ := os.Create(&#34;output.zip&#34;) defer outputFile.Close() zipWriter := zip.NewWriter(outputFile) defer zipWriter.Close() // 添加文件到ZIP文件中 fileToZip, _ := os.]]></description>
+</item>
+</channel>
+</rss>

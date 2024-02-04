@@ -58,14 +58,14 @@ db.First(&user, 1)
 提取所有记录
 ```
 var users []User
-db.Find(&users) 
+db.Find(&users)
 ```
 
 按条件查询
 
 ```
-db.Where("Age > ?", 25).Find(&users) 
-db.Where("Name LIKE ?", "%John%").Find(&users) 
+db.Where("Age > ?", 25).Find(&users)
+db.Where("Name LIKE ?", "%John%").Find(&users)
 ```
 查询名字中<u>包含</u>John的用户
 
@@ -129,16 +129,15 @@ if err := tx.Create(&User{Name: "Alice"}).Error; err != nil {
 
 初始化指针，防止指针为空。
 
-``` 
+```
 var city = &entity.City{}
 ```
 
 检查是否存在、不存在则创建，要考虑全面。
 
-``` 
+```
 if errors.Is(result.Error, gorm.ErrRecordNotFound) || city == nil {
     tx := data.DB.Create(&jsonCity)
 }
 ```
-
 

@@ -1,10 +1,68 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Learning - Category - My New Hugo Site</title>
+        <title>Learning - Category - KK的博客</title>
         <link>https://dengke0712.github.io/categories/learning/</link>
-        <description>Learning - Category - My New Hugo Site</description>
+        <description>Learning - Category - KK的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>dengke712@sina.com (Deng KK)</managingEditor>
-            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 Nov 2023 00:22:07 &#43;0800</lastBuildDate><atom:link href="https://dengke0712.github.io/categories/learning/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 18 Jan 2024 18:40:38 &#43;0800</lastBuildDate><atom:link href="https://dengke0712.github.io/categories/learning/" rel="self" type="application/rss+xml" /><item>
+    <title>文件上传与下载</title>
+    <link>https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/</link>
+    <pubDate>Thu, 18 Jan 2024 18:40:38 &#43;0800</pubDate>
+    <author>Deng KK</author>
+    <guid>https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/</guid>
+    <description><![CDATA[MINIO 前端上传OR后端上传 前端上传： 优点：
+用户体验： 前端上传能够提供更好的用户体验，用户可以直接在浏览器中选择文件并监控上传进度。 减轻服务器负担： 文件可以直接从用户浏览器上传到对象存储服务，减轻了后端服务器的负担。 断点续传： 前端可以更容易地实现断点续传功能，因为文件直接从用户浏览器上传，中间环节的网络中断也不会影响上传。 缺点：
+安全性： 前端上传需要特别注意安全性，因为用户可以直接操作上传的请求，ak sk暴露。 限制： 浏览器对文件大小和类型有一些限制，大文件可能会受到浏览器的限制。 安全性解决办法 问题：敏感信息（例如 Access Key 和 Secret Key）可能会暴露给用户。
+解决： 使用临时凭证： 不要在前端直接使用永久的 Access Key 和 Secret Key。相反，可以通过后端生成临时凭证，前端使用这些临时凭证进行文件上传。 这可以通过使用 AWS 的临时凭证机制（如 STS）或 MinIO 中的 Policy 来实现。 定期轮换凭证可以减少凭证被滥用的风险。
+服务端生成临时凭证
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 func main(){ minioClient, err := minio.]]></description>
+</item>
+<item>
+    <title>Go语言学习之压缩文件</title>
+    <link>https://dengke0712.github.io/6_%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/</link>
+    <pubDate>Thu, 11 Jan 2024 18:40:38 &#43;0800</pubDate>
+    <author>Deng KK</author>
+    <guid>https://dengke0712.github.io/6_%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/</guid>
+    <description><![CDATA[Go中如何压缩文件 zip zlib gzip 的区别 总的来说，ZIP适用于多文件和目录的归档，ZLIB适用于轻量级的数据压缩，而GZIP适用于单个文件的压缩。
+如果需要跨平台支持并涉及多文件归档，ZIP可能是更好的选择；如果只是需要对单个文件或数据进行压缩，ZLIB或GZIP可能更适合。
+ZIP 设计目标：ZIP是一种通用的压缩和归档格式，旨在提供对多个文件和目录的支持。
+压缩算法：使用DEFLATE算法进行数据压缩。
+使用场景：适用于需要在不同操作系统之间进行文件传输或存档的场景，因为ZIP格式是跨平台支持的。
+ZLIB 设计目标：ZLIB是一个用于数据压缩和解压缩的库，它并不直接提供归档功能，而是专注于提供一种通用的压缩算法。
+压缩算法：使用DEFLATE算法，与ZIP相同。
+使用场景：适用于需要在程序中对单个文件或数据进行轻量级压缩和解压缩的场景，而不涉及归档。
+GZIP 设计目标：GZIP是一种常用的压缩和归档格式，通常用于对单个文件进行压缩。
+压缩算法：也使用DEFLATE算法，但与ZIP格式略有不同的头部和尾部格式。
+使用场景：适用于需要在文件系统中存储或传输单个文件的场景，因为GZIP格式在UNIX/Linux环境中广泛支持
+在Go中如何应用 ZIP（archive/zip） archive/zip包主要用于创建和解析ZIP格式的归档文件。使用archive/zip包的Create函数创建一个zip.Writer，然后添加文件并进行压缩。
+缺点：ZIP格式是通用的归档格式，但相对于一些其他格式，它可能在某些情况下产生较大的文件。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 import ( &#34;archive/zip&#34; &#34;os&#34; ) func main() { outputFile, _ := os.Create(&#34;output.zip&#34;) defer outputFile.Close() zipWriter := zip.NewWriter(outputFile) defer zipWriter.Close() // 添加文件到ZIP文件中 fileToZip, _ := os.]]></description>
+</item>
+<item>
+    <title>Kubernetes基础</title>
+    <link>https://dengke0712.github.io/5_k8s%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Thu, 04 Jan 2024 18:40:38 &#43;0800</pubDate>
+    <author>Deng KK</author>
+    <guid>https://dengke0712.github.io/5_k8s%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[Kubernetes体系架构 什么是Kubernetes Kubernetes（K8s）是一个开源的容器编排平台，旨在简化和自动化容器化应用程序的部署、扩展和管理。它提供了一个强大的工具集，帮助我们能够更轻松地构建和运行容器化应用。
+核心理念 容器化： Kubernetes利用容器技术（如Docker）将应用及其所有依赖项打包成一个可移植的镜像，确保在任何环境中都能一致运行。
+自动化： Kubernetes旨在自动化应用的部署、伸缩、升级和故障恢复等操作，减轻开发人员和运维人员的负担。
+弹性和可伸缩： Kubernetes能够根据负载的变化自动调整应用程序的规模，确保系统具有弹性和高可用性。
+声明式配置： 用户通过声明式配置文件描述应用程序的期望状态，Kubernetes负责调整实际状态以匹配期望状态。
+关键特性 容器编排： Kubernetes是一个容器编排平台，负责管理和编排多个容器实例，确保它们协同工作。
+自动伸缩： Kubernetes能够根据负载自动调整应用程序的规模，提高资源利用率。
+服务发现和负载均衡： Kubernetes提供了内置的服务发现和负载均衡机制，确保应用程序能够可靠地相互通信。
+持久化存储： Kubernetes支持持久化存储，使应用程序可以在容器之间共享数据。
+声明式配置： 用户通过YAML文件声明应用程序的配置和期望状态，Kubernetes负责实现这些声明。
+Kubernetes集群 集群的架构体系 Kubernetes集群的架构体系主要包括Master节点和Worker节点。
+Master节点： 是集群的控制中心，负责管理和监控整个集群。主要包括以下核心组件：
+API Server： 提供Kubernetes API，是集群通信的接口。 Controller Manager： 监视集群资源，确保实际状态与期望状态一致。 Scheduler： 负责Pod的调度，决定将Pod调度到哪个Worker节点。 etcd： 分布式键值存储，持久化存储集群的配置数据和状态信息。 Node节点： 是集群中真正运行应用程序容器的节点。主要包括以下核心组件：
+Kubelet： 与Master节点通信，管理Pod的生命周期。 容器运行时： 负责运行和管理容器。 Kubernetes的核心组件 Kubernetes的核心组件是Master节点上的一组关键服务，它们共同协作以管理集群中的容器化应用。这些核心组件包括：
+API Server： 提供Kubernetes API，是集群通信的接口。 Controller Manager： 监视集群中的资源对象，确保实际状态与期望状态一致。 Scheduler： 负责将新创建的Pod调度到集群中的某个Worker节点上。 kubelet： 管理node节点上运行的pod，并与master节点上的API Server进行交互。 Kubernetes的对象 对象的管理 在Kubernetes中，通过API Server进行对象的管理，用户可以使用配置文件（JSON或YAML格式）来定义和部署对象。
+简单的YAML部署示例：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 apiVersion: apps/v1 kind: Deployment metadata: name: nginx-deployment labels: app: nginx spec: replicas: 3 selector: matchLabels: app: nginx template: metadata: labels: app: nginx spec: containers: - name: nginx image: nginx:1.]]></description>
+</item>
+<item>
     <title>Gin学习笔记</title>
     <link>https://dengke0712.github.io/gin/</link>
     <pubDate>Sun, 05 Nov 2023 00:22:07 &#43;0800</pubDate>
@@ -13,7 +71,7 @@
     <description><![CDATA[Gin]]></description>
 </item>
 <item>
-    <title>OOP in GO</title>
+    <title>GO中的面向对象编程</title>
     <link>https://dengke0712.github.io/oop_post/</link>
     <pubDate>Mon, 30 Oct 2023 22:53:30 &#43;0800</pubDate>
     <author>Deng KK</author>

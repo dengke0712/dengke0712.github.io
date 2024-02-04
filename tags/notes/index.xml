@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Notes - Tag - KK的博客</title>
+        <link>https://dengke0712.github.io/tags/notes/</link>
+        <description>Notes - Tag - KK的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>dengke712@sina.com (Deng KK)</managingEditor>
+            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 Nov 2023 23:51:45 &#43;0800</lastBuildDate><atom:link href="https://dengke0712.github.io/tags/notes/" rel="self" type="application/rss+xml" /><item>
+    <title>Notes</title>
+    <link>https://dengke0712.github.io/note/</link>
+    <pubDate>Sun, 05 Nov 2023 23:51:45 &#43;0800</pubDate>
+    <author>Deng KK</author>
+    <guid>https://dengke0712.github.io/note/</guid>
+    <description><![CDATA[笔记]]></description>
+</item>
+</channel>
+</rss>

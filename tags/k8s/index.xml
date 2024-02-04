@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>k8s - Tag - KK的博客</title>
+        <link>https://dengke0712.github.io/tags/k8s/</link>
+        <description>k8s - Tag - KK的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>dengke712@sina.com (Deng KK)</managingEditor>
+            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Jan 2024 18:40:38 &#43;0800</lastBuildDate><atom:link href="https://dengke0712.github.io/tags/k8s/" rel="self" type="application/rss+xml" /><item>
+    <title>Kubernetes基础</title>
+    <link>https://dengke0712.github.io/5_k8s%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Thu, 04 Jan 2024 18:40:38 &#43;0800</pubDate>
+    <author>Deng KK</author>
+    <guid>https://dengke0712.github.io/5_k8s%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[Kubernetes体系架构 什么是Kubernetes Kubernetes（K8s）是一个开源的容器编排平台，旨在简化和自动化容器化应用程序的部署、扩展和管理。它提供了一个强大的工具集，帮助我们能够更轻松地构建和运行容器化应用。
+核心理念 容器化： Kubernetes利用容器技术（如Docker）将应用及其所有依赖项打包成一个可移植的镜像，确保在任何环境中都能一致运行。
+自动化： Kubernetes旨在自动化应用的部署、伸缩、升级和故障恢复等操作，减轻开发人员和运维人员的负担。
+弹性和可伸缩： Kubernetes能够根据负载的变化自动调整应用程序的规模，确保系统具有弹性和高可用性。
+声明式配置： 用户通过声明式配置文件描述应用程序的期望状态，Kubernetes负责调整实际状态以匹配期望状态。
+关键特性 容器编排： Kubernetes是一个容器编排平台，负责管理和编排多个容器实例，确保它们协同工作。
+自动伸缩： Kubernetes能够根据负载自动调整应用程序的规模，提高资源利用率。
+服务发现和负载均衡： Kubernetes提供了内置的服务发现和负载均衡机制，确保应用程序能够可靠地相互通信。
+持久化存储： Kubernetes支持持久化存储，使应用程序可以在容器之间共享数据。
+声明式配置： 用户通过YAML文件声明应用程序的配置和期望状态，Kubernetes负责实现这些声明。
+Kubernetes集群 集群的架构体系 Kubernetes集群的架构体系主要包括Master节点和Worker节点。
+Master节点： 是集群的控制中心，负责管理和监控整个集群。主要包括以下核心组件：
+API Server： 提供Kubernetes API，是集群通信的接口。 Controller Manager： 监视集群资源，确保实际状态与期望状态一致。 Scheduler： 负责Pod的调度，决定将Pod调度到哪个Worker节点。 etcd： 分布式键值存储，持久化存储集群的配置数据和状态信息。 Node节点： 是集群中真正运行应用程序容器的节点。主要包括以下核心组件：
+Kubelet： 与Master节点通信，管理Pod的生命周期。 容器运行时： 负责运行和管理容器。 Kubernetes的核心组件 Kubernetes的核心组件是Master节点上的一组关键服务，它们共同协作以管理集群中的容器化应用。这些核心组件包括：
+API Server： 提供Kubernetes API，是集群通信的接口。 Controller Manager： 监视集群中的资源对象，确保实际状态与期望状态一致。 Scheduler： 负责将新创建的Pod调度到集群中的某个Worker节点上。 kubelet： 管理node节点上运行的pod，并与master节点上的API Server进行交互。 Kubernetes的对象 对象的管理 在Kubernetes中，通过API Server进行对象的管理，用户可以使用配置文件（JSON或YAML格式）来定义和部署对象。
+简单的YAML部署示例：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 apiVersion: apps/v1 kind: Deployment metadata: name: nginx-deployment labels: app: nginx spec: replicas: 3 selector: matchLabels: app: nginx template: metadata: labels: app: nginx spec: containers: - name: nginx image: nginx:1.]]></description>
+</item>
+</channel>
+</rss>

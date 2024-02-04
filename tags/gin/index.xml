@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Gin - Tag - KK的博客</title>
+        <link>https://dengke0712.github.io/tags/gin/</link>
+        <description>Gin - Tag - KK的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>dengke712@sina.com (Deng KK)</managingEditor>
+            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 Nov 2023 00:22:07 &#43;0800</lastBuildDate><atom:link href="https://dengke0712.github.io/tags/gin/" rel="self" type="application/rss+xml" /><item>
+    <title>Gin学习笔记</title>
+    <link>https://dengke0712.github.io/gin/</link>
+    <pubDate>Sun, 05 Nov 2023 00:22:07 &#43;0800</pubDate>
+    <author>Deng KK</author>
+    <guid>https://dengke0712.github.io/gin/</guid>
+    <description><![CDATA[Gin]]></description>
+</item>
+</channel>
+</rss>

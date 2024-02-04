@@ -2,7 +2,8 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://dengke0712.github.io/categories/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://dengke0712.github.io/8_%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86%E8%AF%BB%E5%90%8E%E6%84%9F/</loc><lastmod>2024-02-01T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://dengke0712.github.io/categories/</loc><lastmod>2024-02-01T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://dengke0712.github.io/zh-cn/categories/"
@@ -11,8 +12,7 @@
                     hreflang="en"
                     href="https://dengke0712.github.io/categories/"
                     /></url><url>
-            <loc>https://dengke0712.github.io/tags/hugo/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://dengke0712.github.io/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://dengke0712.github.io/</loc><lastmod>2024-02-01T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://dengke0712.github.io/zh-cn/"
@@ -21,10 +21,8 @@
                     hreflang="en"
                     href="https://dengke0712.github.io/"
                     /></url><url>
-            <loc>https://dengke0712.github.io/categories/note/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://dengke0712.github.io/note/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://dengke0712.github.io/posts/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://dengke0712.github.io/tags/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://dengke0712.github.io/posts/</loc><lastmod>2024-02-01T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://dengke0712.github.io/tags/</loc><lastmod>2024-02-01T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://dengke0712.github.io/zh-cn/tags/"
@@ -33,7 +31,22 @@
                     hreflang="en"
                     href="https://dengke0712.github.io/tags/"
                     /></url><url>
-            <loc>https://dengke0712.github.io/gin/</loc><lastmod>2023-11-05T00:22:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://dengke0712.github.io/categories/learning/</loc><lastmod>2023-11-05T00:22:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://dengke0712.github.io/oop_post/</loc><lastmod>2023-10-30T22:53:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://dengke0712.github.io/first_post/</loc><lastmod>2023-10-29T22:41:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url></urlset>
+            <loc>https://dengke0712.github.io/tags/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/</loc><lastmod>2024-02-01T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://dengke0712.github.io/categories/%E8%AF%BB%E5%90%8E%E6%84%9F/</loc><lastmod>2024-02-01T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://dengke0712.github.io/categories/learning/</loc><lastmod>2024-01-18T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://dengke0712.github.io/tags/minio/</loc><lastmod>2024-01-18T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://dengke0712.github.io/tags/sftp/</loc><lastmod>2024-01-18T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://dengke0712.github.io/7_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/</loc><lastmod>2024-01-18T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://dengke0712.github.io/6_%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/</loc><lastmod>2024-01-11T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://dengke0712.github.io/tags/zip/</loc><lastmod>2024-01-11T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://dengke0712.github.io/tags/k8s/</loc><lastmod>2024-01-04T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://dengke0712.github.io/5_k8s%E5%9F%BA%E7%A1%80/</loc><lastmod>2024-01-04T18:40:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://dengke0712.github.io/categories/note/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://dengke0712.github.io/tags/notes/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://dengke0712.github.io/note/</loc><lastmod>2023-11-05T23:51:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://dengke0712.github.io/tags/gin/</loc><lastmod>2023-11-05T00:22:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://dengke0712.github.io/gin/</loc><lastmod>2023-11-05T00:22:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://dengke0712.github.io/oop_post/</loc><lastmod>2023-10-30T22:53:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://dengke0712.github.io/tags/oop/</loc><lastmod>2023-10-30T22:53:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://dengke0712.github.io/tags/gorm/</loc><lastmod>2023-10-29T22:41:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://dengke0712.github.io/first_post/</loc><lastmod>2023-10-29T22:41:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>

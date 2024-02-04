@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OOP - Tag - KK的博客</title>
+        <link>https://dengke0712.github.io/tags/oop/</link>
+        <description>OOP - Tag - KK的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>dengke712@sina.com (Deng KK)</managingEditor>
+            <webMaster>dengke712@sina.com (Deng KK)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 30 Oct 2023 22:53:30 &#43;0800</lastBuildDate><atom:link href="https://dengke0712.github.io/tags/oop/" rel="self" type="application/rss+xml" /><item>
+    <title>GO中的面向对象编程</title>
+    <link>https://dengke0712.github.io/oop_post/</link>
+    <pubDate>Mon, 30 Oct 2023 22:53:30 &#43;0800</pubDate>
+    <author>Deng KK</author>
+    <guid>https://dengke0712.github.io/oop_post/</guid>
+    <description><![CDATA[OOP]]></description>
+</item>
+</channel>
+</rss>
